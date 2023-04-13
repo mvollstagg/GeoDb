@@ -1,0 +1,12 @@
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\bin\Debug\net6.0\Vanora.Entities.deps.json
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\bin\Debug\net6.0\Vanora.Entities.dll
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\bin\Debug\net6.0\Vanora.Entities.pdb
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.csproj.AssemblyReference.cache
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.AssemblyInfo.cs
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.dll
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\refint\Vanora.Entities.dll
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\Vanora.Entities.pdb
+C:\Users\PC\Documents\Github\GeoDb\Vanora.Entities\obj\Debug\net6.0\ref\Vanora.Entities.dll

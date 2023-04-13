@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vanora.GeoDb", "Vanora.GeoDb\Vanora.GeoDb.csproj", "{A7E5B160-7FCA-478E-8DE3-9AE2D190B0BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vanora.Entities", "Vanora.Entities\Vanora.Entities.csproj", "{3E348B6A-7023-402E-8F09-B2DBD9658364}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7E5B160-7FCA-478E-8DE3-9AE2D190B0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E5B160-7FCA-478E-8DE3-9AE2D190B0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E5B160-7FCA-478E-8DE3-9AE2D190B0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E5B160-7FCA-478E-8DE3-9AE2D190B0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E348B6A-7023-402E-8F09-B2DBD9658364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E348B6A-7023-402E-8F09-B2DBD9658364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E348B6A-7023-402E-8F09-B2DBD9658364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E348B6A-7023-402E-8F09-B2DBD9658364}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
