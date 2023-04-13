@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Vanora.GeoDb/Vanora.GeoDb.csproj",
+                "${workspaceFolder}/Vanora.GeoApi/Vanora.GeoApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Vanora.GeoDb/Vanora.GeoDb.csproj",
+                "${workspaceFolder}/Vanora.GeoApi/Vanora.GeoApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Vanora.GeoDb/Vanora.GeoDb.csproj"
+                "${workspaceFolder}/Vanora.GeoApi/Vanora.GeoApi.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
