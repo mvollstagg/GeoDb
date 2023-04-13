@@ -90,7 +90,7 @@ var serializerSettings = new JsonSerializerSettings
 
 using (WebClient client = new WebClient())
 {
-    using (StreamReader sr = new StreamReader(client.OpenRead("https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates%2Bcities.json")))
+    using (StreamReader sr = new StreamReader(client.OpenRead("https://raw.githubusercontent.com/mvollstagg/GeoDb/main/Vanora.GeoDb/countries%2Bstates%2Bcities.json")))
     {
         using (JsonReader reader = new JsonTextReader(sr))
         {
