@@ -18,7 +18,6 @@ namespace Vanora.Entities
         public string Currency { get; set; }
         public string CurrencyName { get; set; }
         public string CurrencySymbol { get; set; }
-        [JsonPropertyName("tld")]
         public string TopLevelDomain { get; set; }
         public string Native { get; set; }
         public string Region { get; set; }
@@ -27,10 +26,8 @@ namespace Vanora.Entities
         public string Longitude { get; set; }
         public string Emoji { get; set; }
         public bool Deleted { get; set; }
-        [JsonPropertyName("timezones")]
         public List<CmsCountryTimezone> Timezones { get; set; }
         public List<CmsCountryText> Texts { get; set; }
-        [JsonPropertyName("states")]
         public List<CmsCity> Cities { get; set; }
     }
 }

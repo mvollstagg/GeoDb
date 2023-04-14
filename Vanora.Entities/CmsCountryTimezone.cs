@@ -14,7 +14,6 @@ namespace Vanora.Entities
         public int GmtOffset { get; set; }
         public string GmtOffsetName { get; set; }
         public string Abbreviation { get; set; }
-        [JsonPropertyName("tzName")]
         public string TimezoneName { get; set; }
     }
 }
