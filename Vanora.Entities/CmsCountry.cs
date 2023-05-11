@@ -26,8 +26,8 @@ namespace Vanora.Entities
         public string Longitude { get; set; }
         public string Emoji { get; set; }
         public bool Deleted { get; set; }
-        public List<CmsCountryTimezone> Timezones { get; set; }
         public List<CmsCountryText> Texts { get; set; }
+        public List<CmsCountryTimezone> Timezones { get; set; }
         public List<CmsCity> Cities { get; set; }
     }
 }

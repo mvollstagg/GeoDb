@@ -9,7 +9,6 @@ namespace Vanora.Entities
         [ForeignKey("ParentId")]
         public CmsCity CmsCity { get; set; }
         
-        [JsonPropertyName("name")]
         [MaxLength(500)]
         public string Name { get; set; }
     }

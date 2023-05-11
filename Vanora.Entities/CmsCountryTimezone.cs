@@ -9,11 +9,7 @@ namespace Vanora.Entities
         public long CmsCountryId { get; set; }
         [ForeignKey("CmsCountryId")]
         public CmsCountry CmsCountry { get; set; }
-
-        public string ZoneName { get; set; }
-        public int GmtOffset { get; set; }
-        public string GmtOffsetName { get; set; }
-        public string Abbreviation { get; set; }
-        public string TimezoneName { get; set; }
+        public long CmsTimezoneId { get; set; }
+        [ForeignKey("CmsTimezoneId")]
+        public CmsTimezone CmsTimezone { get; set; }
     }
-}

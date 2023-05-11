@@ -22,7 +22,7 @@ public class GeoApiController : ControllerBase
     {
         try
         {
-            List<TestCountry> countries = new List<TestCountry> { };
+            List<CmsGeoCountryModel> countries = new List<CmsGeoCountryModel> { };
 
             using (WebClient client = new WebClient())
             {
@@ -31,13 +31,25 @@ public class GeoApiController : ControllerBase
                     using (JsonReader reader = new JsonTextReader(sr))
                     {
                         JsonSerializer serializer = new JsonSerializer();
-                        countries = JsonSerializer.CreateDefault().Deserialize<List<TestCountry>>(reader);
+                        countries = JsonSerializer.CreateDefault().Deserialize<List<CmsGeoCountryModel>>(reader);
                     }
                 }
             }
 
-            var turkey = countries.Where(x => x.Iso2 == "TR").FirstOrDefault();
+            #region CmsTimezone to Database | Completed
+            List<CmsTimezone> timeZones = countries.SelectMany(x => x.Timezones).Distinct().Select(x => new CmsTimezone
+            {
+                ZoneName = x.ZoneName,
+                GmtOffset = x.GmtOffset,
+                GmtOffsetName = x.GmtOffsetName,
+                Abbreviation = x.Abbreviation,
+                TimezoneName = x.TzName
+            }).GroupBy(t => t.Abbreviation).Select(g => g.First()).ToList();
+            var identity = await _identityContainer.GetIdentity();
+            await _cmsTimezoneRepository.Insert(timeZones, identity);
+            #endregion
 
+            #region CmsCountry to Database
             List<CmsCountry> _cmsCountries = new List<CmsCountry> { };
             int counter = 1;
             foreach (var country in countries)
@@ -61,15 +73,12 @@ public class GeoApiController : ControllerBase
                     Latitude = country.Latitude,
                     Longitude = country.Longitude,
                     Emoji = country.Emoji,
-                    Deleted = false,
-                    Timezones = country.Timezones.Select(p => new CmsCountryTimezone
-                                                        {
-                                                            ZoneName = p.ZoneName,
-                                                            GmtOffset = p.GmtOffset,
-                                                            GmtOffsetName = p.GmtOffsetName,
-                                                            Abbreviation = p.Abbreviation,
-                                                            TimezoneName = p.TzName
-                                                        }).ToList(),
+                    Timezones = _cmsTimezoneRepository.Table
+                    .Where(x => country.Timezones.Select(t => t.Abbreviation).Contains(x.Abbreviation))
+                    .Select(x => new CmsCountryTimezone
+                    {
+                        CmsTimezoneId = x.Id
+                    }).ToList(),
                     Texts = new List<CmsCountryText>
                     {
                         new CmsCountryText
@@ -104,93 +113,95 @@ public class GeoApiController : ControllerBase
                         },
                     },
                     Cities = country.States.Select(p => new CmsCity
+                    {
+                        Active = true,
+                        StateCode = p.StateCode,
+                        Latitude = p.Latitude,
+                        Longitude = p.Longitude,
+                        Type = p.Type,
+                        Deleted = false,                                
+                        Texts = new List<CmsCityText>
+                        {
+                            new CmsCityText
                             {
-                                Active = true,
-                                StateCode = p.StateCode,
-                                Latitude = p.Latitude,
-                                Longitude = p.Longitude,
-                                Type = p.Type,
-                                Deleted = false,                                
-                                Texts = new List<CmsCityText>
+                                CmsLanguageId = 1,
+                                Name = p.Name
+                            },
+                            new CmsCityText
+                            {
+                                CmsLanguageId = 2,
+                                Name = p.Name
+                            },
+                            new CmsCityText
+                            {
+                                CmsLanguageId = 3,
+                                Name = p.Name
+                            },
+                            new CmsCityText
+                            {
+                                CmsLanguageId = 4,
+                                Name = p.Name
+                            },
+                            new CmsCityText
+                            {
+                                CmsLanguageId = 5,
+                                Name = p.Name
+                            },
+                            new CmsCityText
+                            {
+                                CmsLanguageId = 6,
+                                Name = p.Name
+                            }
+                        },
+                        Counties = p.Cities.Select(x => new CmsCounty
+                        {
+                            Active = true,
+                            Latitude = x.Latitude,
+                            Longitude = x.Longitude,
+                            Deleted = false,
+                            Texts = new List<CmsCountyText>
+                            {
+                                new CmsCountyText
                                 {
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 1,
-                                        Name = p.Name
-                                    },
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 2,
-                                        Name = p.Name
-                                    },
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 3,
-                                        Name = p.Name
-                                    },
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 4,
-                                        Name = p.Name
-                                    },
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 5,
-                                        Name = p.Name
-                                    },
-                                    new CmsCityText
-                                    {
-                                        CmsLanguageId = 6,
-                                        Name = p.Name
-                                    }
+                                    CmsLanguageId = 1,
+                                    Name = x.Name
                                 },
-                                Counties = p.Cities.Select(x => new CmsCounty
+                                new CmsCountyText
                                 {
-                                    Active = true,
-                                    Latitude = x.Latitude,
-                                    Longitude = x.Longitude,
-                                    Deleted = false,
-                                    Texts = new List<CmsCountyText>
-                                    {
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 1,
-                                            Name = x.Name
-                                        },
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 2,
-                                            Name = x.Name
-                                        },
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 3,
-                                            Name = x.Name
-                                        },
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 4,
-                                            Name = x.Name
-                                        },
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 5,
-                                            Name = x.Name
-                                        },
-                                        new CmsCountyText
-                                        {
-                                            CmsLanguageId = 6,
-                                            Name = x.Name
-                                        }
-                                    }
-                                }).ToList(),
-                            }).ToList(),
-                            
-
+                                    CmsLanguageId = 2,
+                                    Name = x.Name
+                                },
+                                new CmsCountyText
+                                {
+                                    CmsLanguageId = 3,
+                                    Name = x.Name
+                                },
+                                new CmsCountyText
+                                {
+                                    CmsLanguageId = 4,
+                                    Name = x.Name
+                                },
+                                new CmsCountyText
+                                {
+                                    CmsLanguageId = 5,
+                                    Name = x.Name
+                                },
+                                new CmsCountyText
+                                {
+                                    CmsLanguageId = 6,
+                                    Name = x.Name
+                                }
+                            }
+                        }).ToList(),
+                    }).ToList(),
                 });
             }
 
-            return new JsonResult(_cmsCountries);            
+            var identity = await _identityContainer.GetIdentity();
+            await _cmsCountryRepository.Insert(_cmsCountries, identity);
+            #endregion
+
+            return new JsonResult("Ok");            
         }
         catch (System.Exception ex)
         {
